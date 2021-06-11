@@ -85,44 +85,66 @@ class Library {
 class StudentLog {
   constructor(name){
     this.name = name;
-    this.jornal = [];
+    this.jornal = {
+      geometry: [],
+      algebra: []
+    };
   };
   getName(){
     return this.name;
   };
   addGrade(grade,subject){
-    if(grade >= 1 && grade <= 5){
-        this.jornal.push(grade);
-         return this.jornal;
-    }else {
+    if (grade >= 1 && grade <= 5 && subject === "algebra"){
+        this.jornal['algebra'].push(grade);
+        return this.jornal; 
+    }  else if ( grade >= 1 && grade <= 5 && subject === "geometry"){
+        this.jornal['geometry'].push(grade);
+        //this.jornal.geometry.push(grade);
+        return this.jornal; 
+    } else {
       return (`Вы пытались поставить оценку ${grade}  по предмету  ${subject}. Допускаются только числа от 1 до 5.`)
     };
   }; 
   getAverageBySubject(subject){ 
-      let averageRating;
-      let sum = 0;
+    let averageRating;
+    let sum = 0;
 
-    if (subject === "algebra" || subject === "geometry"){
-        for(let i = 0; i < this.jornal.length; i++){
-          sum += this.jornal[i];
-          averageRating = sum / this.jornal.length
-        };
-        return averageRating;
+    if (subject === "algebra"){
+      for(let i = 0; i < this.jornal['algebra'].length; i++){
+        sum += this.jornal['algebra'][i];
+        averageRating = sum / this.jornal['algebra'].length;
+      }; 
+      return `Средний балл по предмету ${subject} ${averageRating}`
+    } else if (subject === "geometry"){
+      for(let i = 0; i < this.jornal['geometry'].length; i++){
+          sum += this.jornal['geometry'][i];
+          averageRating = sum / this.jornal['geometry'].length;
+      };
+      return `Средний балл по предмету ${subject} ${averageRating}`;
     } else {
-      return 0
-    }
+      return "Вы ввели несуществующий предмет!"
+    };
   };
   
   getTotalAverage(){
-    if (this.jornal.length === 0){
+    if (this.jornal['algebra'].length === 0 && this.jornal['geometry'].length === 0){
       return 0
     } else {
       let sumAverage = 0;
-      for(let i = 0; i < this.jornal.length; i++){
-        sumAverage += this.jornal[i];
-        
+      let sumAverage1 = 0;
+      let n = 0;
+      let g = 0;
+      let r;
+      for(let i = 0; i < this.jornal['algebra'].length; i++){
+        sumAverage += this.jornal['algebra'][i];  
+        n = sumAverage / this.jornal['algebra'].length; 
       }
-       return sumAverage / this.jornal.length
+      for(let i = 0; i < this.jornal['geometry'].length; i++){
+        sumAverage1 += this.jornal['geometry'][i];  
+        g = sumAverage1 / this.jornal['geometry'].length; 
+      }
+      r = n + g; 
+      return r / 2; 
     }
   }
 }
