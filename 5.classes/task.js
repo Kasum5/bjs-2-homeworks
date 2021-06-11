@@ -129,21 +129,24 @@ class StudentLog {
     if (this.jornal['algebra'].length === 0 && this.jornal['geometry'].length === 0){
       return 0
     } else {
-      let sumAverage = 0;
-      let sumAverage1 = 0;
-      let n = 0;
-      let g = 0;
-      let r;
+      let arrGrade = [];
+      let sum = 0;
+      let averageRating1;
+
       for(let i = 0; i < this.jornal['algebra'].length; i++){
-        sumAverage += this.jornal['algebra'][i];  
-        n = sumAverage / this.jornal['algebra'].length; 
+        arrGrade.push(this.jornal['algebra'][i]);  
       };
+      
       for(let i = 0; i < this.jornal['geometry'].length; i++){
-        sumAverage1 += this.jornal['geometry'][i];  
-        g = sumAverage1 / this.jornal['geometry'].length; 
+        arrGrade.push(this.jornal['geometry'][i]);  
       };
-      r = n + g; 
-      return r / 2; 
+
+      for(let i = 0; i < arrGrade.length; i++){
+        sum += arrGrade[i];  
+      };
+
+      averageRating1 = sum / arrGrade.length;
+      return averageRating1;
     };
   };
 };
