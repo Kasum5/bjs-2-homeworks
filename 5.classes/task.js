@@ -99,7 +99,6 @@ class StudentLog {
         return this.jornal; 
     }  else if ( grade >= 1 && grade <= 5 && subject === "geometry"){
         this.jornal['geometry'].push(grade);
-        //this.jornal.geometry.push(grade);
         return this.jornal; 
     } else {
       return (`Вы пытались поставить оценку ${grade}  по предмету  ${subject}. Допускаются только числа от 1 до 5.`)
@@ -122,7 +121,7 @@ class StudentLog {
       };
       return `Средний балл по предмету ${subject} ${averageRating}`;
     } else {
-      return "Вы ввели несуществующий предмет!"
+      return "Вы ввели несуществующий предмет!";
     };
   };
   
@@ -138,13 +137,13 @@ class StudentLog {
       for(let i = 0; i < this.jornal['algebra'].length; i++){
         sumAverage += this.jornal['algebra'][i];  
         n = sumAverage / this.jornal['algebra'].length; 
-      }
+      };
       for(let i = 0; i < this.jornal['geometry'].length; i++){
         sumAverage1 += this.jornal['geometry'][i];  
         g = sumAverage1 / this.jornal['geometry'].length; 
-      }
+      };
       r = n + g; 
       return r / 2; 
-    }
-  }
-}
+    };
+  };
+};
